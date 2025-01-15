@@ -59,11 +59,15 @@ const Feed = ({ user, setUser }) => {
             onClick={() => navigate("/exit")}
             title="Exit"
           >
-            <LuPanelLeftOpen size={24} />
+            <LuPanelLeftOpen size={24} className="text-gray-500" />
           </div>
           <div className="mt-16 flex flex-col items-center">
             <div className="mb-6 cursor-pointer hover:text-blue-500 bg-blue-100 border p-3 rounded-lg">
-              <LuMessageSquare size={24} title="Messages" />
+              <LuMessageSquare
+                size={24}
+                title="Messages"
+                className="text-gray-500"
+              />
             </div>
             <div
               className={`mb-6 cursor-pointer hover:text-blue-500 ${
@@ -73,7 +77,7 @@ const Feed = ({ user, setUser }) => {
               }`}
               onClick={handleUserClick}
             >
-              <LuUsers size={24} title="User Info" />
+              <LuUsers size={24} title="User Info" className="text-gray-500" />
             </div>
           </div>
         </div>
@@ -86,14 +90,14 @@ const Feed = ({ user, setUser }) => {
             <div className="relative w-full max-w-[350px]">
               <LuSearch
                 size={20}
-                className="absolute left-3 top-1/2 text-gray-500"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
               />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="border border-gray-300 rounded px-10 py-2 w-full"
+                className="border border-gray-300 rounded pl-10 py-2 w-full"
               />
             </div>
           </div>
@@ -111,7 +115,7 @@ const Feed = ({ user, setUser }) => {
                 onClick={handleLogin}
                 className="flex items-center text-blue-500 hover:text-white hover:bg-blue-500 px-4 py-2 rounded border border-blue-500"
               >
-                <LuLogIn className="mr-2" />
+                <LuLogIn className="mr-2 text-gray-500" />
                 Login
               </button>
             )}
@@ -131,7 +135,20 @@ const Feed = ({ user, setUser }) => {
                   }`}
                   onClick={() => setActiveTab("home")}
                 >
-                  <LuHouse size={24} title="Home" />
+                  <LuHouse size={24} title="Home" className="text-gray-500" />
+                </div>
+
+                <div
+                  className={`mb-6 cursor-pointer hover:text-blue-500 ${
+                    activeTab === "messages" ? "bg-white rounded-lg p-3" : ""
+                  }`}
+                  onClick={() => setActiveTab("messages")}
+                >
+                  <LuMessagesSquare
+                    size={24}
+                    title="Messages"
+                    className="text-gray-500"
+                  />
                 </div>
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${
@@ -141,7 +158,11 @@ const Feed = ({ user, setUser }) => {
                   }`}
                   onClick={() => setActiveTab("notifications")}
                 >
-                  <LuBell size={24} title="Notifications" />
+                  <LuBell
+                    size={24}
+                    title="Notifications"
+                    className="text-gray-500"
+                  />
                 </div>
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${
@@ -149,7 +170,7 @@ const Feed = ({ user, setUser }) => {
                   }`}
                   onClick={() => setActiveTab("tags")}
                 >
-                  <LuTag size={24} title="Tags" />
+                  <LuTag size={24} title="Tags" className="text-gray-500" />
                 </div>
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${
@@ -157,28 +178,25 @@ const Feed = ({ user, setUser }) => {
                   }`}
                   onClick={() => setActiveTab("hashtags")}
                 >
-                  <LuHash size={24} title="Hashtags" />
+                  <LuHash
+                    size={24}
+                    title="Hashtags"
+                    className="text-gray-500"
+                  />
                 </div>
-                <div
-                  className={`mb-6 cursor-pointer hover:text-blue-500 ${
-                    activeTab === "messages" ? "bg-white rounded-lg p-3" : ""
-                  }`}
-                  onClick={() => setActiveTab("messages")}
-                >
-                  <LuMessagesSquare size={24} title="Messages" />
-                </div>
+
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${
                     activeTab === "files" ? "bg-white rounded-lg p-3" : ""
                   }`}
                   onClick={() => setActiveTab("files")}
                 >
-                  <LuFiles size={24} title="Files" />
+                  <LuFiles size={24} title="Files" className="text-gray-500" />
                 </div>
               </div>
               <div className="mb-4">
                 <LuCirclePlus
-                  className="cursor-pointer hover:text-blue-500"
+                  className="cursor-pointer hover:text-blue-500 text-gray-500"
                   size={24}
                   title="Add"
                   onClick={handleAddClick}
@@ -199,7 +217,10 @@ const Feed = ({ user, setUser }) => {
                             : ""
                         }`}
                       >
-                        <LuMessageCircle className="mr-2" size={18} />
+                        <LuMessageCircle
+                          className="mr-2 text-gray-500"
+                          size={18}
+                        />
                         Messages
                         <span className="ml-2 bg-blue-100 border border-blue-500 text-blue-600 px-2 py-1 rounded-lg">
                           {messageCount}
@@ -213,7 +234,7 @@ const Feed = ({ user, setUser }) => {
                             : ""
                         }`}
                       >
-                        <LuFiles className="mr-2" size={18} />
+                        <LuFiles className="mr-2 text-gray-500" size={18} />
                         Files
                         <span className="ml-2 bg-blue-100 border border-blue-500 text-blue-600 px-2 py-1 rounded-lg">
                           {fileCount}
