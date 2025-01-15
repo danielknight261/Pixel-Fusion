@@ -14,6 +14,9 @@ import {
   LuSearch,
   LuCirclePlus,
   LuMessageCircle,
+  LuBell,
+  LuTag,
+  LuHash,
 } from "react-icons/lu";
 
 // Initial files for initializing file count
@@ -30,13 +33,22 @@ const initialFiles = {
 
 const Feed = ({ user, setUser }) => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("messages");
+  const [activeTab, setActiveTab] = useState("home");
+  const [homeSubTab, setHomeSubTab] = useState("messages");
   const [searchQuery, setSearchQuery] = useState("");
   const [messageCount, setMessageCount] = useState(0);
-  const [fileCount, setFileCount] = useState(initialFiles.all.length); // Initialize file count
+  const [fileCount, setFileCount] = useState(initialFiles.all.length);
 
   const handleLogout = () => setUser(null);
   const handleLogin = () => setUser({ initials: "CH" });
+
+  const handleUserClick = () => {
+    navigate("/user-info");
+  };
+
+  const handleAddClick = () => {
+    navigate("/add-info");
+  };
 
   return (
     <div className="min-h-screen flex relative">
@@ -50,8 +62,19 @@ const Feed = ({ user, setUser }) => {
             <LuPanelLeftOpen size={24} />
           </div>
           <div className="mt-16 flex flex-col items-center">
-            <LuMessageSquare className="mb-4" size={24} />
-            <LuUsers className="mb-4" size={24} />
+            <div className="mb-6 cursor-pointer hover:text-blue-500 bg-blue-100 border p-3 rounded-lg">
+              <LuMessageSquare size={24} title="Messages" />
+            </div>
+            <div
+              className={`mb-6 cursor-pointer hover:text-blue-500 ${
+                activeTab === "user-info"
+                  ? "bg-blue-100 border p-3 rounded-lg"
+                  : ""
+              }`}
+              onClick={handleUserClick}
+            >
+              <LuUsers size={24} title="User Info" />
+            </div>
           </div>
         </div>
       )}
@@ -112,6 +135,32 @@ const Feed = ({ user, setUser }) => {
                 </div>
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${
+                    activeTab === "notifications"
+                      ? "bg-white rounded-lg p-3"
+                      : ""
+                  }`}
+                  onClick={() => setActiveTab("notifications")}
+                >
+                  <LuBell size={24} title="Notifications" />
+                </div>
+                <div
+                  className={`mb-6 cursor-pointer hover:text-blue-500 ${
+                    activeTab === "tags" ? "bg-white rounded-lg p-3" : ""
+                  }`}
+                  onClick={() => setActiveTab("tags")}
+                >
+                  <LuTag size={24} title="Tags" />
+                </div>
+                <div
+                  className={`mb-6 cursor-pointer hover:text-blue-500 ${
+                    activeTab === "hashtags" ? "bg-white rounded-lg p-3" : ""
+                  }`}
+                  onClick={() => setActiveTab("hashtags")}
+                >
+                  <LuHash size={24} title="Hashtags" />
+                </div>
+                <div
+                  className={`mb-6 cursor-pointer hover:text-blue-500 ${
                     activeTab === "messages" ? "bg-white rounded-lg p-3" : ""
                   }`}
                   onClick={() => setActiveTab("messages")}
@@ -132,50 +181,89 @@ const Feed = ({ user, setUser }) => {
                   className="cursor-pointer hover:text-blue-500"
                   size={24}
                   title="Add"
+                  onClick={handleAddClick}
                 />
               </div>
             </div>
 
             <div className="flex-1 flex flex-col bg-white rounded-tr-lg rounded-br-lg">
-              <div className="flex items-center mb-4 border-b border-gray-300 pt-2 px-20">
-                <div className="flex space-x-4">
-                  <button
-                    onClick={() => setActiveTab("messages")}
-                    className={`flex items-center px-4 py-2 pb- ${
-                      activeTab === "messages"
-                        ? "border-b-2 border-blue-500"
-                        : "text-gray-700"
-                    }`}
-                  >
-                    <LuMessageCircle className="mr-2" size={18} />
-                    Messages
-                    <span className="ml-2 text-gray-500">({messageCount})</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("files")}
-                    className={`flex items-center px-4 py-2 pb-2 ${
-                      activeTab === "files"
-                        ? "border-b-2 border-blue-500"
-                        : "text-gray-700"
-                    }`}
-                  >
-                    <LuFiles className="mr-2" size={18} />
-                    Files
-                    <span className="ml-2 text-gray-500">({fileCount})</span>
-                  </button>
+              {activeTab === "home" && (
+                <>
+                  <div className="flex items-center mb-4 border-b border-gray-300 pt-2 px-20">
+                    <div className="flex space-x-4">
+                      <button
+                        onClick={() => setHomeSubTab("messages")}
+                        className={`flex items-center px-4 py-2 pb-2 ${
+                          homeSubTab === "messages"
+                            ? "border-b-2 border-blue-500"
+                            : ""
+                        }`}
+                      >
+                        <LuMessageCircle className="mr-2" size={18} />
+                        Messages
+                        <span className="ml-2 bg-blue-100 border border-blue-500 text-blue-600 px-2 py-1 rounded-lg">
+                          {messageCount}
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => setHomeSubTab("files")}
+                        className={`flex items-center px-4 py-2 pb-2 ${
+                          homeSubTab === "files"
+                            ? "border-b-2 border-blue-500"
+                            : ""
+                        }`}
+                      >
+                        <LuFiles className="mr-2" size={18} />
+                        Files
+                        <span className="ml-2 bg-blue-100 border border-blue-500 text-blue-600 px-2 py-1 rounded-lg">
+                          {fileCount}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                  {homeSubTab === "messages" && (
+                    <div className="overflow-y-auto h-full px-20 py-4">
+                      <MessageList
+                        searchQuery={searchQuery}
+                        onMessageCountChange={setMessageCount}
+                      />
+                    </div>
+                  )}
+                  {homeSubTab === "files" && (
+                    <div className="overflow-y-auto h-full px-20 py-4">
+                      <FileList onFileCountChange={setFileCount} />
+                    </div>
+                  )}
+                </>
+              )}
+              {activeTab === "notifications" && (
+                <div className="overflow-y-auto h-full px-20 py-4">
+                  <h1 className="text-2xl font-bold">Notifications Content</h1>
                 </div>
-              </div>
-
-              <div className="overflow-y-auto h-full px-20 py-4">
-                {activeTab === "messages" ? (
+              )}
+              {activeTab === "tags" && (
+                <div className="overflow-y-auto h-full px-20 py-4">
+                  <h1 className="text-2xl font-bold">Tags Content</h1>
+                </div>
+              )}
+              {activeTab === "hashtags" && (
+                <div className="overflow-y-auto h-full px-20 py-4">
+                  <h1 className="text-2xl font-bold">Hashtags Content</h1>
+                </div>
+              )}
+              {activeTab === "messages" && (
+                <div className="overflow-y-auto h-full px-20 py-4">
                   <MessageList
                     searchQuery={searchQuery}
                     onMessageCountChange={setMessageCount}
                   />
-                ) : (
+                </div>
+              )}
+              {activeTab === "files" && (
+                <div className="overflow-y-auto h-full px-20 py-4">
                   <FileList onFileCountChange={setFileCount} />
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         ) : (
