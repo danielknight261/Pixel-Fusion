@@ -10,20 +10,30 @@ import {
   LuUsers,
   LuHouse,
   LuMessagesSquare,
-  LuBell,
-  LuHash,
   LuFiles,
   LuSearch,
   LuCirclePlus,
   LuMessageCircle,
 } from "react-icons/lu";
 
+// Initial files for initializing file count
+const initialFiles = {
+  all: [
+    "DanielKnightFrontendCV25.pdf",
+    "image1.jpg",
+    "image2.jpg",
+    "HiImDan.jpg",
+  ],
+  images: ["image1.jpg", "image2.jpg", "HiImDan.jpg"],
+  documents: ["DanielKnightFrontendCV25.pdf"],
+};
+
 const Feed = ({ user, setUser }) => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("messages");
   const [searchQuery, setSearchQuery] = useState("");
   const [messageCount, setMessageCount] = useState(0);
-  const [fileCount, setFileCount] = useState(0);
+  const [fileCount, setFileCount] = useState(initialFiles.all.length); // Initialize file count
 
   const handleLogout = () => setUser(null);
   const handleLogin = () => setUser({ initials: "CH" });
@@ -107,7 +117,6 @@ const Feed = ({ user, setUser }) => {
                   onClick={() => setActiveTab("messages")}
                 >
                   <LuMessagesSquare size={24} title="Messages" />
-                  <span className="text-sm text-gray-500 ml-1"></span>
                 </div>
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${
@@ -116,19 +125,6 @@ const Feed = ({ user, setUser }) => {
                   onClick={() => setActiveTab("files")}
                 >
                   <LuFiles size={24} title="Files" />
-                  <span className="text-sm text-gray-500 ml-1">
-                    ({fileCount})
-                  </span>
-                </div>
-                <div
-                  className={`mb-6 cursor-pointer hover:text-blue-500 ${
-                    activeTab === "notifications"
-                      ? "bg-white rounded-lg p-3"
-                      : ""
-                  }`}
-                  onClick={() => setActiveTab("notifications")}
-                >
-                  <LuHash size={24} title="Notifications" />
                 </div>
               </div>
               <div className="mb-4">
