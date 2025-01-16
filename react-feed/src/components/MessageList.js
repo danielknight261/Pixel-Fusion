@@ -6,34 +6,50 @@ import { LuChevronDown } from "react-icons/lu";
 const initialMessages = [
   {
     id: 1,
-    channel: "general",
+    channel: "#[Channel name]",
     initials: "CN",
     surname: "Clark",
-    date: "2024-11-21",
-    text: "Welcome to the feed!",
+    date: "Nov 21st, 2024 at 12:54 PM",
+    text: "CS29039, can't find the current id.",
   },
   {
     id: 2,
-    channel: "updates",
+    channel: "#[Channel name]",
     initials: "CN",
     surname: "Clark",
-    date: "2024-11-21",
-    text: "Don't forget to check the files section.",
+    date: "Nov 21st, 2024 at 12:23 PM",
+    text: "CS29039, found it can you please check whether this is relevant?",
   },
   {
     id: 3,
-    channel: "react",
+    channel: "#[general]",
     initials: "CN",
     surname: "Clark",
-    date: "2024-11-21",
-    text: "React and Tailwind are great together!",
+    date: "Nov 17th, 2024 at 01:54 PM",
+    text: "Somethings work, somethings dont",
   },
   {
     id: 4,
-    channel: "features",
+    channel: "#[updates]",
     initials: "CN",
     surname: "Clark",
-    date: "2024-11-20",
+    date: "Oct 21st, 2024 at 11:50 PM",
+    text: "Don't forget to check the files section.",
+  },
+  {
+    id: 5,
+    channel: "#[react]",
+    initials: "CN",
+    surname: "Clark",
+    date: "Dec 19th, 2024 at 07:54 AM",
+    text: "React and Tailwind are great together!",
+  },
+  {
+    id: 6,
+    channel: "#[features]",
+    initials: "CN",
+    surname: "Clark",
+    date: "Jan 16th, 2025 at 09:10 AM",
     text: "Search functionality is now live!",
   },
 ];
@@ -270,13 +286,20 @@ const MessageList = ({ searchQuery, onMessageCountChange }) => {
       {filteredMessages.map((message) => (
         <div
           key={message.id}
-          className="border border-gray-300 rounded p-4 mb-4 bg-gray-50"
+          className="border border-gray-300 rounded p-4 mb-4"
         >
-          <p className="text-gray-500 text-sm">
-            #{message.channel} | {message.initials} {message.surname} |{" "}
-            {message.date}
-          </p>
-          <p className="text-gray-800 mt-2">{message.text}</p>
+          <p className="text-gray-500 text-sm font-bold">{message.channel}</p>
+
+          <div className="flex items-center gap-2 mt-1">
+            <span className="rounded-lg border border-gray-400 p-1 text-gray-800 font-semibold">
+              {message.initials}
+            </span>
+            <span className="text-gray-500 text-sm">
+              {message.surname} | {message.date}
+            </span>
+          </div>
+
+          <p className="text-gray-800 mt-2 pl-10">{message.text}</p>
         </div>
       ))}
       {filteredMessages.length === 0 && (

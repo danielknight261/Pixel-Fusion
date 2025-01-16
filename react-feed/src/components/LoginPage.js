@@ -10,8 +10,8 @@ const LoginPage = ({ setUser }) => {
     // Set hardcoded user details
     const user = {
       firstName: "C",
-      lastName: "H",
-      initials: "CH",
+      lastName: "N",
+      initials: "CN",
     };
 
     setUser(user); // Save user data
@@ -49,7 +49,7 @@ const LoginPage = ({ setUser }) => {
               type="text"
               id="lastName"
               className="border border-gray-300 rounded px-4 py-2 w-full"
-              value="H"
+              value="N"
               disabled
             />
           </div>

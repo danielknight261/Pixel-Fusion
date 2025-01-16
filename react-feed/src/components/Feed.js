@@ -19,7 +19,6 @@ import {
   LuHash,
 } from "react-icons/lu";
 
-// Initial files for initializing file count
 const initialFiles = {
   all: [
     "DanielKnightFrontendCV25.pdf",
@@ -40,7 +39,7 @@ const Feed = ({ user, setUser }) => {
   const [fileCount, setFileCount] = useState(initialFiles.all.length);
 
   const handleLogout = () => setUser(null);
-  const handleLogin = () => setUser({ initials: "CH" });
+  const handleLogin = () => setUser({ initials: "CN" });
 
   const handleUserClick = () => {
     navigate("/user-info");
