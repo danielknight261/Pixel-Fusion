@@ -1,72 +1,67 @@
-Live Site - https://pixel-fusion-rosy.vercel.app/
+# Project Title
 
-# Getting Started with Create React App
+React Feed Frontend Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based frontend for a feed-style application that showcases a mock interface for managing messages, files, and other user-driven content. It uses a combination of Lucide icons and Font Awesome icons for an aesthetically pleasing design. While not all Font Awesome icons matched the intended design, i took some creative liberties to ensure i got the closest match to the mockup design.
 
-## Available Scripts
+The project is responsive, although there is room for improvement with additional time and testing. Key features include a working search bar, mock login functionality, and a flexible tab-based layout.
 
-In the project directory, you can run:
+## Deployment
 
-### `npm start`
+Live site link: https://pixel-fusion-rosy.vercel.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To deploy this project run
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Clone the repo
 
-### `npm test`
+- cd react-feed
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install Dependencies
 
-### `npm run build`
+- npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Start the Application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- npm start
+  Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Hosted site link: https://pixel-fusion-rosy.vercel.app/
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Responsive Design
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- The layout adapts to different screen sizes, providing a functional experience on small and medium screens. Some aspects could benefit from further refinement.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Search Functionality
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The search bar filters messages.
+- The "X" button allows users to reset the search quickly.
+- With minimal effort, the search could be extended to include files and other displayed features.
 
-## Learn More
+Mock Login System
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Provides a placeholder login/logout experience.
+- Enables navigation and interaction with the full app after logging in.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Dynamic Navigation
 
-### Code Splitting
+- Multiple tabs for navigating through the app (e.g., Messages, Files, Notifications).
+- Tracks the number of active files dynamically, updating with the search.
+- View and delete and download mock files — including the delightfully scandalous link to my CV.
+- Smooth transitions between sections with mock functionality.
+- React with Tailwind CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Next Steps
 
-### Analyzing the Bundle Size
+Backend Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Connect to a backend service to enable real data flow, such as fetching messages, files, and user information.
 
-### Making a Progressive Web App
+Improved Responsiveness
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Enhance mobile usability with better scaling and adjustments for smaller screens.
 
-### Advanced Configuration
+Extended Search
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Expand the search feature to cover additional content, such as files, notifications, and tags.

@@ -9,16 +9,18 @@ import {
   LuMessageSquare,
   LuUsers,
   LuHouse,
-  LuMessagesSquare,
   LuFiles,
   LuSearch,
   LuCirclePlus,
   LuMessageCircle,
   LuBell,
-  LuTag,
   LuHash,
+  LuX,
 } from "react-icons/lu";
 
+import { FaRegBookmark, FaRegComments } from "react-icons/fa";
+
+// Define initial files for the feed
 const initialFiles = {
   all: [
     "DanielKnightFrontendCV25.pdf",
@@ -37,6 +39,8 @@ const Feed = ({ user, setUser }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [messageCount, setMessageCount] = useState(0);
   const [fileCount, setFileCount] = useState(initialFiles.all.length);
+
+  // Logout/Logout handler to reset the user state
 
   const handleLogout = () => setUser(null);
   const handleLogin = () => setUser({ initials: "CN" });
@@ -86,7 +90,7 @@ const Feed = ({ user, setUser }) => {
         <div className="relative h-16 bg-white flex items-center px-4 border-b border-gray-300 z-10">
           <h1 className="text-2xl font-bold text-gray-800">Feed</h1>
           <div className="flex-grow flex justify-center ml-8">
-            <div className="relative w-full max-w-[350px]">
+            <div className="relative max-w-[600px] md:max-w-[300px] sm:max-w-[200px]">
               <LuSearch
                 size={20}
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
@@ -98,9 +102,17 @@ const Feed = ({ user, setUser }) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="border border-gray-300 rounded pl-10 py-2 w-full"
               />
+              {searchQuery && (
+                <LuX
+                  size={20}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer hover:text-blue-500"
+                  onClick={() => setSearchQuery("")}
+                  title="Clear"
+                />
+              )}
             </div>
           </div>
-          <div className="absolute top-0 right-0 h-16 flex items-center justify-end px-4">
+          <div className="absolute top-0 right-0 h-16 flex items-center justify-end px-4 md:px-8 sm:px-4">
             {user ? (
               <div
                 className="w-10 h-10 rounded-full border border-gray-400 text-gray-700 flex items-center justify-center font-bold cursor-pointer hover:bg-blue-500 hover:text-white"
@@ -112,18 +124,19 @@ const Feed = ({ user, setUser }) => {
             ) : (
               <button
                 onClick={handleLogin}
-                className="flex items-center text-blue-500 hover:text-white hover:bg-blue-500 px-4 py-2 rounded border border-blue-500"
+                className="flex items-center text-blue-500 hover:text-white hover:bg-blue-500 px-4 py-2 rounded-full md:pr-4 sm:pr-2 border border-blue-500 fixed bottom-4 right-4 sm:static md:static"
               >
                 <LuLogIn className="mr-2 text-gray-500" />
-                Login
+                <span className="hidden sm:block">Login</span>
               </button>
             )}
           </div>
         </div>
 
+        {/* Content displayed when logged in */}
         {user ? (
           <div
-            className="flex h-[calc(100vh-6rem)] border border-gray-300 rounded-lg mr-5"
+            className="flex h-[calc(100vh-6rem)] border border-gray-300 rounded-lg mr-5 md:border-10 md:box-border sm:border-10"
             style={{ marginTop: "20px", marginLeft: "20px" }}
           >
             <div className="w-16 border-r border-gray-300 flex flex-col items-center py-4 bg-gray-100 justify-between rounded-tl-lg rounded-bl-lg">
@@ -143,7 +156,7 @@ const Feed = ({ user, setUser }) => {
                   }`}
                   onClick={() => setActiveTab("messages")}
                 >
-                  <LuMessagesSquare
+                  <FaRegComments
                     size={24}
                     title="Messages"
                     className="text-gray-500"
@@ -169,7 +182,11 @@ const Feed = ({ user, setUser }) => {
                   }`}
                   onClick={() => setActiveTab("tags")}
                 >
-                  <LuTag size={24} title="Tags" className="text-gray-500" />
+                  <FaRegBookmark
+                    size={20}
+                    title="Tags"
+                    className="text-gray-500"
+                  />
                 </div>
                 <div
                   className={`mb-6 cursor-pointer hover:text-blue-500 ${

@@ -164,7 +164,7 @@ const MessageList = ({ searchQuery, onMessageCountChange }) => {
         <div className="relative" ref={dropdownRefs.from}>
           <div
             onClick={() => toggleDropdown("from")}
-            className="flex items-center px-4 py-2 border border-gray-300 rounded  hover:bg-gray-300 cursor-pointer"
+            className="flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-300 cursor-pointer"
           >
             From
             <LuChevronDown className="ml-2" />
@@ -224,7 +224,7 @@ const MessageList = ({ searchQuery, onMessageCountChange }) => {
         <div className="relative" ref={dropdownRefs.date}>
           <div
             onClick={() => toggleDropdown("date")}
-            className="flex items-center px-4 py-2 border border-gray-300 rounded  hover:bg-gray-300 cursor-pointer"
+            className="flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-300 cursor-pointer"
           >
             Date
             <LuChevronDown className="ml-2" />
@@ -249,10 +249,13 @@ const MessageList = ({ searchQuery, onMessageCountChange }) => {
         </div>
 
         {/* Most Relevant Filter */}
-        <div className="relative ml-auto" ref={dropdownRefs.relevance}>
+        <div
+          className="relative ml-auto hidden md:block"
+          ref={dropdownRefs.relevance}
+        >
           <div
             onClick={() => toggleDropdown("relevance")}
-            className="flex items-center px-4 py-2 border border-gray-300 rounded  hover:bg-gray-300 cursor-pointer"
+            className="flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-300 cursor-pointer"
           >
             Most Relevant
             <LuChevronDown className="ml-2" />
@@ -289,7 +292,6 @@ const MessageList = ({ searchQuery, onMessageCountChange }) => {
           className="border border-gray-300 rounded p-4 mb-4"
         >
           <p className="text-gray-500 text-sm font-bold">{message.channel}</p>
-
           <div className="flex items-center gap-2 mt-1">
             <span className="rounded-lg border border-gray-400 p-1 text-gray-800 font-semibold">
               {message.initials}
@@ -298,7 +300,6 @@ const MessageList = ({ searchQuery, onMessageCountChange }) => {
               {message.surname} | {message.date}
             </span>
           </div>
-
           <p className="text-gray-800 mt-2 pl-10">{message.text}</p>
         </div>
       ))}

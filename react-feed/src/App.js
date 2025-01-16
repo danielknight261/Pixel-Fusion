@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Feed from "./components/Feed";
-import LoginPage from "./components/LoginPage";
 import ExitPage from "./components/ExitPage";
 import UserInfoPage from "./components/UserInfoPage";
 import AddInfoPage from "./components/AddInfoPage";
@@ -13,8 +12,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Feed user={user} setUser={setUser} />} />
-
-        <Route path="/login" element={<LoginPage setUser={setUser} />} />
 
         <Route path="/exit" element={<ExitPage />} />
 
